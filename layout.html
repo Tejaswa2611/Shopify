@@ -1,0 +1,31 @@
+<!-- page.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Page</title>
+</head>
+<body>
+    <h1>API Page</h1>
+    
+    <!-- Input fields for parameters -->
+    <input type="text" id="phoneNumber" placeholder="Phone Number">
+    <input type="text" id="addressId" placeholder="Address ID">
+    <input type="text" id="orderNumber" placeholder="Order Number">
+
+    <!-- Buttons to trigger API calls -->
+    <button onclick="getAddresses()">Get Addresses</button>
+    <button onclick="updateAddress()">Update Address</button>
+    <button onclick="getOrders()">Get Orders</button>
+    <button onclick="getOrderDetails()">Get Order Details</button>
+    <button onclick="cancelOrder()">Cancel Order</button>
+
+    <!-- Display area for API response data -->
+    <div id="response"></div>
+
+    <!-- JavaScript code -->
+    <script src="page.js"></script>
+</body>
+</html>
