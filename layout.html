@@ -9,40 +9,59 @@
     <h1>API Page</h1>
 
     <!-- Task 1: Get List of Saved Addresses -->
-    <h1>Customer Address Lookup</h1>
-    <label for="phone">Enter Phone Number:</label>
-    <input type="text" id="phone" name="phone" placeholder="Enter phone number...">
-    <button id="lookupBtn">Lookup Addresses</button>
-    <div id="addressResults"></div>
-
-
-    <!-- Task 2: Update Customer Address -->
-    <h2>Task 2: Update Customer Address</h2>
-    <input type="text" id="customerIdTask2" placeholder="Customer ID">
-    <input type="text" id="addressIdTask2" placeholder="Address ID">
-    <input type="text" id="addressDataTask2" placeholder="Address Data">
-    <button onclick="updateAddress()">Update Address</button>
-    <div id="responseTask2"></div>
+    <div id="task1">
+        <h2>Customer Address Lookup</h2>
+        <label for="phone">Enter Phone Number:</label>
+        <input type="text" id="phone" name="phone" placeholder="Enter phone number...">
+        <button id="lookupBtn" onclick="handleAddressLookup()">Lookup Addresses</button>
+        <div id="addressResults"></div>
+    </div>
 
     <!-- Task 3: Get Order List -->
-    <h2>Task 3: Get Order List</h2>
-    <input type="text" id="phoneNumberTask3" placeholder="Phone Number">
-    <button onclick="getOrders()">Get Orders</button>
-    <div id="responseTask3"></div>
+    <div id="task3">
+        <h2>Fetch Customer Orders</h2>
+        <label for="phoneNumber">Enter Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number...">
+        <button id="fetchOrdersBtn" onclick="handleFetchCustomerOrders()">Fetch Orders</button>
+        <div id="customerOrderDetails"></div> <!-- Changed the id -->
+    </div>
 
     <!-- Task 4: Get Order Details -->
-    <h2>Task 4: Get Order Details</h2>
-    <input type="text" id="orderNumberTask4" placeholder="Order Number">
-    <button onclick="getOrderDetails()">Get Order Details</button>
-    <div id="responseTask4"></div>
+    <div id="task4">
+        <h2>Fetch Shopify Order Details</h2>
+        <label for="orderNumber">Enter Order Number:</label>
+        <input type="text" id="orderNumber" name="orderNumber" placeholder="Enter order number...">
+        <button id="fetchOrderDetailsBtn" onclick="handleFetchOrderDetails()">Fetch Order Details</button>
+        <div id="orderDetails"></div>
+    </div>
 
     <!-- Task 5: Cancel Order -->
-    <h2>Task 5: Cancel Order</h2>
-    <input type="text" id="orderNumberTask5" placeholder="Order Number">
-    <button onclick="cancelOrder()">Cancel Order</button>
-    <div id="responseTask5"></div>
+    <div id="task5">
+        <h2>Cancel Shopify Order</h2>
+        <label for="orderNumber">Enter Order Number:</label>
+        <input type="text" id="cancelOrderNumber" name="cancelOrderNumber" placeholder="Enter order number...">
+        <button id="cancelBtn" onclick="handleCancelOrder()">Cancel Order</button>
+        <div id="cancelResult"></div>
+    </div>
+    <!-- Task 2: Update Address -->
+    <h1>Update Customer Address</h1>
 
-    <!-- JavaScript code -->
+    <label for="customerId">Customer ID:</label>
+    <input type="text" id="customerId" name="customerId" placeholder="Enter customer ID">
+    <br>
+    <label for="addressId">Address ID:</label>
+    <input type="text" id="addressId" name="addressId" placeholder="Enter address ID">
+    <br>
+    <label for="fieldToUpdate">Field to Update:</label>
+    <input type="text" id="fieldToUpdate" name="fieldToUpdate" placeholder="Enter field to update">
+    <br>
+    <label for="fieldValue">Value:</label>
+    <input type="text" id="fieldValue" name="fieldValue" placeholder="Enter value">
+    <br>
+    <button type="button" onclick="updateCustomerAddress()">Update Address</button>
+    <div id="message"></div>
+
+
     <script src="page.js"></script>
 </body>
 </html>
