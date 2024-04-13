@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Shopify = require('shopify-api-node');
 const { errorHandler } = require('../../../utils/errorHandlers');
 const shopify = require('../../../shopifyConfig');
 
 router.get('/', async (req, res) => {
-    const { order_number } = req.body;
+    const { order_number } = req.query; 
+    console.log(order_number);
 
     try {
         const orders = await shopify.order.list({ name: order_number });

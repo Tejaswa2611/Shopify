@@ -2,11 +2,16 @@
 
 const express = require('express');
 const router = express.Router();
-const Shopify = require('shopify-api-node');
 const { errorHandler } = require('../../../utils/errorHandlers');
 const shopify = require('../../../shopifyConfig');
+
 router.get('/', async (req, res) => {
-    const { phone_number } = req.body;
+    let phone_number = req.query.phone_number;
+    phone_number = phone_number.trim();
+    if (!phone_number.startsWith('+')) {
+        phone_number = '+' + phone_number;
+    }
+    // console.log(phone_number);
 
     try {
         const allCustomers = await shopify.customer.list();

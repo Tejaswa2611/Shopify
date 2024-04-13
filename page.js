@@ -1,73 +1,37 @@
-// page.js
+document.addEventListener('DOMContentLoaded', () => {
+    const lookupBtn = document.getElementById('lookupBtn');
+    const phoneInput = document.getElementById('phone');
+    const addressResults = document.getElementById('addressResults');
 
-async function getAddresses() {
-    const phoneNumber = document.getElementById('phoneNumber').value;
-    const requestBody = {
-        phone_number: phoneNumber
-    };
+    lookupBtn.addEventListener('click', async () => {
+        const phoneNumber = phoneInput.value.trim();
 
-    try {
-        const response = await fetch('https://shopify-adu6.onrender.com/app/api/addresses', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        });
+        // Send GET request to Express route
+        try {
+            const response = await fetch(`/customer-addresses?phone_number=${phoneNumber}`);
+            const data = await response.json();
 
-        const data = await response.json();
-        document.getElementById('response').innerText = JSON.stringify(data);
-    } catch (error) {
-        console.error('Error fetching addresses:', error);
-        document.getElementById('response').innerText = 'Failed to fetch addresses';
+            if (response.ok) {
+                displayAddresses(data.addresses);
+            } else {
+                addressResults.innerHTML = `<p>Error: ${data.error}</p>`;
+            }
+        } catch (error) {
+            addressResults.innerHTML = '<p>Error fetching data. Please try again later.</p>';
+            console.error('Error fetching data:', error);
+        }
+    });
+
+    function displayAddresses(addresses) {
+        if (addresses.length === 0) {
+            addressResults.innerHTML = '<p>No addresses found for the provided phone number.</p>';
+            return;
+        }
+
+        const addressList = addresses.map(address => {
+            return `<p>${address.address1}, ${address.city}, ${address.province}, ${address.country}</p>`;
+        }).join('');
+
+        addressResults.innerHTML = addressList;
     }
-}
-
-
-async function updateAddress() {
-    const addressId = document.getElementById('addressId').value;
-    // Implement API call to update address using addressId
-    // Display response in the response area
-}
-
-async function getOrders() {
-    const phoneNumber = document.getElementById('phoneNumber').value;
-    try {
-        const response = await fetch(`https://shopify-adu6.onrender.com/app/api/orders?phone_number=${phoneNumber}`);
-        const data = await response.json();
-        document.getElementById('response').innerText = JSON.stringify(data);
-    } catch (error) {
-        console.error('Error fetching orders:', error);
-        document.getElementById('response').innerText = 'Failed to fetch orders';
-    }
-}
-
-async function getOrderDetails() {
-    const orderNumber = document.getElementById('orderNumber').value;
-    try {
-        const response = await fetch(`https://shopify-adu6.onrender.com/app/api/order?order_number=${orderNumber}`);
-        const data = await response.json();
-        document.getElementById('response').innerText = JSON.stringify(data);
-    } catch (error) {
-        console.error('Error fetching order details:', error);
-        document.getElementById('response').innerText = 'Failed to fetch order details';
-    }
-}
-
-async function cancelOrder() {
-    const orderNumber = document.getElementById('orderNumber').value;
-    try {
-        const response = await fetch(`https://shopify-adu6.onrender.com/app/api/order/cancel`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ order_number: orderNumber })
-        });
-        const data = await response.json();
-        document.getElementById('response').innerText = JSON.stringify(data);
-    } catch (error) {
-        console.error('Error cancelling order:', error);
-        document.getElementById('response').innerText = 'Failed to cancel order';
-    }
-}
+});

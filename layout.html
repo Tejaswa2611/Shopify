@@ -1,5 +1,3 @@
-<!-- page.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,21 +7,40 @@
 </head>
 <body>
     <h1>API Page</h1>
-    
-    <!-- Input fields for parameters -->
-    <input type="text" id="phoneNumber" placeholder="Phone Number">
-    <input type="text" id="addressId" placeholder="Address ID">
-    <input type="text" id="orderNumber" placeholder="Order Number">
 
-    <!-- Buttons to trigger API calls -->
-    <button onclick="getAddresses()">Get Addresses</button>
+    <!-- Task 1: Get List of Saved Addresses -->
+    <h1>Customer Address Lookup</h1>
+    <label for="phone">Enter Phone Number:</label>
+    <input type="text" id="phone" name="phone" placeholder="Enter phone number...">
+    <button id="lookupBtn">Lookup Addresses</button>
+    <div id="addressResults"></div>
+
+
+    <!-- Task 2: Update Customer Address -->
+    <h2>Task 2: Update Customer Address</h2>
+    <input type="text" id="customerIdTask2" placeholder="Customer ID">
+    <input type="text" id="addressIdTask2" placeholder="Address ID">
+    <input type="text" id="addressDataTask2" placeholder="Address Data">
     <button onclick="updateAddress()">Update Address</button>
-    <button onclick="getOrders()">Get Orders</button>
-    <button onclick="getOrderDetails()">Get Order Details</button>
-    <button onclick="cancelOrder()">Cancel Order</button>
+    <div id="responseTask2"></div>
 
-    <!-- Display area for API response data -->
-    <div id="response"></div>
+    <!-- Task 3: Get Order List -->
+    <h2>Task 3: Get Order List</h2>
+    <input type="text" id="phoneNumberTask3" placeholder="Phone Number">
+    <button onclick="getOrders()">Get Orders</button>
+    <div id="responseTask3"></div>
+
+    <!-- Task 4: Get Order Details -->
+    <h2>Task 4: Get Order Details</h2>
+    <input type="text" id="orderNumberTask4" placeholder="Order Number">
+    <button onclick="getOrderDetails()">Get Order Details</button>
+    <div id="responseTask4"></div>
+
+    <!-- Task 5: Cancel Order -->
+    <h2>Task 5: Cancel Order</h2>
+    <input type="text" id="orderNumberTask5" placeholder="Order Number">
+    <button onclick="cancelOrder()">Cancel Order</button>
+    <div id="responseTask5"></div>
 
     <!-- JavaScript code -->
     <script src="page.js"></script>
